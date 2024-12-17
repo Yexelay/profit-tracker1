@@ -26,7 +26,7 @@ app.use((req, res, next) => {
 });
 
 
-app.use(express.static('public'));  // Assuming your images are in a 'public' folder
+app.use(express.static('docs'));  // Assuming your images are in a 'public' folder
 app.use(bodyParser.json());
 
 // Подключаемся к SQLite базе данных
