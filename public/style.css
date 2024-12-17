@@ -1,0 +1,378 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1e1e2e;
+  color: #c9d1d9;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  overflow-x: hidden; /* Отключаем горизонтальную прокрутку */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box; /* Учитываем padding и border в общей ширине */
+}
+
+h1, h2, h3 {
+  color: #58a6ff;
+}
+
+#mainContent {
+  display: none; /* Скрыть основной контент до авторизации */
+}
+
+button {
+  width: 120px;
+  height: 40px;
+  font-size: 16px;
+  background-color: #46a149;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.4s ease;
+}
+
+button:hover {
+  background-color: #1b6e38;
+}
+
+input[type="text"], input[type="number"], input[type="date"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #222933;
+  border-radius: 5px;
+  width: 100%; /* Инпуты растягиваются на всю ширину */
+  max-width: none; /* Убираем максимальную ширину */
+  background-color: #161b22;
+  color: #fff;
+}
+
+input::placeholder {
+  color: #797979;
+}
+
+#calendar {
+  margin-top: 20px;
+  font-size: 16px;
+  text-align: center;
+  background-color: #161b22;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #c9d1d9;
+}
+
+th, td {
+  width: 14%;
+  height: 80px;
+  border: 1px solid #30363d;
+  text-align: center;
+  padding: 5px;
+  vertical-align: top;
+}
+
+th {
+  background-color: #21262d;
+  color: #58a6ff;
+}
+
+#monthSelect option.selectedMonth {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  background: #161b22;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 0 auto 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  width: 100%;
+  gap: 20px;
+}
+
+.input-container > div {
+  flex: 1; /* Каждый блок будет иметь одинаковую ширину */
+}
+
+input[type="text"], input[type="number"], input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #222933;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+button {
+  height: 50px;
+  padding: 0 20px;
+  background-color: #3498db;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+#profitInfo {
+  background: #21262d;
+  padding: 20px;
+  border-radius: 6px;
+  margin-top: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Устанавливаем ширину 100% */
+  max-width: 350px; /* Максимальная ширина для блока */
+  box-sizing: border-box; /* Учитываем padding в общей ширине */
+}
+
+#profitInfo h3 {
+  margin: 10px 0;
+  color: #58a6ff;
+}
+
+#profitInfo button {
+  background-color: #505050;
+  margin-top: 10px;
+}
+
+#profitInfo button:hover {
+  background-color: #c0392b;
+}
+
+#purchaseList, #saleList {
+  margin-top: 20px;
+  background-color: #161b22;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  width: 100%;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #0d1117;
+  border-radius: 5px;
+  border: 1px solid #30363d;
+}
+
+select {
+  background-color: #0d1117;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+select:focus {
+  outline: none;
+  border-color: #58a6ff;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+  body {
+    overflow-x: hidden; /* Убираем горизонтальную прокрутку на мобильных устройствах */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0; /* Убираем отступы */
+  }
+
+
+  .container {
+    display: flex; /* Нужно для работы с flex-контейнерами */
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+    width: 90%;
+    align-items: center; /* Центрирование элементов внутри контейнера */
+    justify-content: center;
+  }
+
+  #profitInfo {
+    width: 81.5%; /* Растягиваем блок на всю ширину экрана на мобильных устройствах */
+    margin-top: 15px;
+    margin-left: 41px;
+    max-width: 100%; /* Убираем максимальную ширину */
+  }
+
+  .peron_info {
+    height: 30px;
+    border-radius: 5px;
+    padding: 5px;
+  }
+  
+  button {
+    width: 90%; /* Сделать кнопки шире */
+  }
+
+  .button-logout {
+    width: 20%;
+    height: 30px;
+    margin-top: 5px;
+    margin-right: 335px;
+  }
+
+  .register-button {
+    width: 100%;
+    height: 40px;
+    margin-top: 5px;
+    border-radius: 5px;
+  }
+
+  .auth-button {
+    width: 100%;
+    height: 40px;
+    margin-top: 5px;
+    border-radius: 5px;
+  }
+
+  .reset-button {
+    width: 30%;
+    height: 20px;
+    font-size: 12px;
+    margin-right: auto;
+  }
+
+  .delete-button {
+    width: 25%;
+    font-size: 10px;
+    height: 20px;
+  }
+
+  .input-container {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  #purchaseInput, #saleInput {
+    flex: 1 1 100%;
+    margin: 5px 0;
+    margin-left: 41px;
+    width: 90%;
+  }
+
+  input[type="text"], input[type="number"], input[type="date"] {
+    width: 90%; /* Инпуты растягиваются на всю ширину */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  .input-container > div {
+    width: 90%;
+    margin-bottom: 10px;
+  }
+
+  #purchaseList, #saleList {
+    width: 90%;
+  }
+
+  #itemList {
+    max-width: 90%;
+    margin-left: 41px;
+  }
+}
+
+
+@media (min-width: 601px) {
+  .container {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  input[type="text"], input[type="number"], input[type="date"] {
+    width: 240px; /* Фиксированная ширина инпутов на десктопе */
+  }
+
+  .button-logout {
+    margin: 10px;
+    margin-left: auto;
+  }
+
+  .peron_info {
+    height: 30px;
+    border-radius: 5px;
+    padding: 5px;
+  }
+
+  .delete-button{
+    width: 10%;
+    height: 20px;
+    font-size: 12px;
+  }
+
+  .reset-button {
+    width: 25%;
+    height: 20px;
+    font-size: 12px;
+    margin-right: auto;
+  }
+
+  .register-button {
+    width: 100%;
+    height: 40px;
+    margin-top: 5px;
+    border-radius: 5px;
+  }
+
+  .auth-button {
+    width: 100%;
+    height: 40px;
+    margin-top: 5px;
+    border-radius: 5px;
+  }
+
+  .input-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  #purchaseInput, #saleInput {
+    flex: 1;
+    width: auto;
+  }
+}

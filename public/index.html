@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Продажа товаров</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Форма регистрации -->
+  <div id="registerSection">
+    <h3>Регистрация</h3>
+    <input class="peron_info" type="email" id="registerEmail" placeholder="Введите email">
+    <input class="peron_info" type="password" id="registerPassword" placeholder="Введите пароль">
+    <button class="register-button" onclick="registerUser()">Зарегистрироваться</button>
+    <p id="registerMessage"></p>
+  </div>
+
+  <!-- Форма авторизации -->
+  <div id="authSection">
+    <h3>Авторизация</h3>
+    <input class="peron_info" type="email" id="emailInput" placeholder="Введите email">
+    <input class="peron_info" type="password" id="passwordInput" placeholder="Введите пароль">
+    <button class="auth-button" onclick="loginUser(event)">Войти</button>
+    <p id="authMessage"></p>
+  </div>
+
+  <button class="button-logout" onclick="logout()">Выйти</button>
+
+
+
+  <!-- Основной контент, скрытый до авторизации -->
+  <div id="mainContent" style="display: none;">
+
+  <!-- Информация о профитах -->
+  <div id="profitInfo">
+    <h3>Общий профит: <span id="totalProfit">0.00</span>$</h3>
+    <h3>Месячный профит: <span id="monthlyProfit">0.00</span>$</h3>
+    <h3>Дневной профит: <span id="dailyProfit">0.00</span>$</h3>
+    <!-- Кнопка для обнуления профитов -->
+    <button class="reset-button" onclick="confirmResetProfits()">Обнулить</button>
+  </div>
+
+  <!-- Ввод информации о покупке -->
+  <div id="purchaseInput">
+    <h3>Добавить покупку</h3>
+    <input type="text" id="titleInput" placeholder="Название товара">
+    <input type="number" id="priceInput" placeholder="Цена покупки">
+    <input type="date" id="purchaseDateInput">
+    <button onclick="addPurchase()">Добавить покупку</button>
+  </div>
+
+  <!-- Ввод информации о продаже -->
+  <div id="saleInput">
+    <h3>Продажа товара</h3>
+    <input type="text" id="saleTitleInput" placeholder="Название проданного предмета">
+    <input type="number" id="salePriceInput" placeholder="Цена продажи">
+    <input type="date" id="saleDateInput">
+    <button onclick="sellItem()">Продажа</button>
+  </div>
+
+
+  <!-- Список покупок -->
+  <div id="itemList">
+    <h3>Список покупок:</h3>
+    <ul id="purchaseList"></ul>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
