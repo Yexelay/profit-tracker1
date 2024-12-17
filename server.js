@@ -18,21 +18,12 @@ app.use((req, res, next) => {
   const username = process.env.BASIC_AUTH_USERNAME;
   const password = process.env.BASIC_AUTH_PASSWORD;
 
-  if (!user) {
-    console.log('No user data found');
+  if (!user || user.name !== username || user.pass !== password) {
     res.set('WWW-Authenticate', 'Basic realm="Restricted Area"');
-    return res.status(401).json({ error: 'Доступ запрещен: отсутствуют данные пользователя' });
+    // return res.status(401).json({ error: 'Доступ запрещен' });
   }
-
-  if (user.name !== username || user.pass !== password) {
-    console.log('Incorrect username or password');
-    res.set('WWW-Authenticate', 'Basic realm="Restricted Area"');
-    return res.status(401).json({ error: 'Доступ запрещен: неверный логин или пароль' });
-  }
-
   next();
 });
-
 
 
 app.use(express.static('public'));  // Assuming your images are in a 'public' folder
