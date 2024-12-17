@@ -63,8 +63,10 @@ db.serialize(() => {
 });
 
 // Middleware
-app.use(cors());
-app.use(bodyParser.json());
+app.use(cors({
+  origin: '*',  // Разрешить доступ с любого домена
+  methods: ['GET', 'POST', 'DELETE'],  // Разрешить нужные методы
+}));
 
 // Маршруты
 
@@ -216,6 +218,6 @@ app.post('/profits', (req, res) => {
 
 
 // Запуск сервера
-app.listen(PORT, () => {
-  console.log(`Сервер запущен на http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Сервер запущен на http://0.0.0.0:${PORT}`);
 });
