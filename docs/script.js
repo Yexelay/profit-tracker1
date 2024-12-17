@@ -1,3 +1,5 @@
+const API_BASE_URL = 'https://c5d3-37-57-49-222.ngrok-free.app';
+
 window.onload = function() {
   const token = localStorage.getItem('authToken'); // Получаем токен из localStorage
 
@@ -29,33 +31,33 @@ function logout() {
 }
 
 // Логика регистрации
-async function registerUser() {
-  const email = document.getElementById('registerEmail').value;
-  const password = document.getElementById('registerPassword').value;
+// async function registerUser() {
+//   const email = document.getElementById('registerEmail').value;
+//   const password = document.getElementById('registerPassword').value;
 
-  if (!email || !password) {
-    document.getElementById('registerMessage').textContent = 'Пожалуйста, заполните все поля!';
-    return;
-  }
+//   if (!email || !password) {
+//     document.getElementById('registerMessage').textContent = 'Пожалуйста, заполните все поля!';
+//     return;
+//   }
 
-  try {
-    const response = await fetch('http://localhost:3000/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
+//   try {
+//     const response = await fetch(`${API_BASE_URL}/register`, {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify({ email, password }),
+//     });
 
-    if (response.ok) {
-      document.getElementById('registerMessage').textContent = 'Регистрация прошла успешно!';
-    } else {
-      const data = await response.json();
-      document.getElementById('registerMessage').textContent = data.error || 'Ошибка регистрации.';
-    }
-  } catch (error) {
-    console.error('Ошибка запроса:', error);
-    document.getElementById('registerMessage').textContent = 'Ошибка при подключении к серверу.';
-  }
-}
+//     if (response.ok) {
+//       document.getElementById('registerMessage').textContent = 'Регистрация прошла успешно!';
+//     } else {
+//       const data = await response.json();
+//       document.getElementById('registerMessage').textContent = data.error || 'Ошибка регистрации.';
+//     }
+//   } catch (error) {
+//     console.error('Ошибка запроса:', error);
+//     document.getElementById('registerMessage').textContent = 'Ошибка при подключении к серверу.';
+//   }
+// }
 
 let token = null;
 
@@ -72,7 +74,7 @@ function loginUser(event) {
 
   console.log('Отправка данных на сервер:', { email, password });
 
-  fetch('http://localhost:3000/login', {
+  fetch(`${API_BASE_URL}/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -111,7 +113,7 @@ let purchases = [];
 // Загрузка покупок с сервера
 async function loadPurchases() {
   try {
-    const response = await fetch('http://localhost:3000/purchases');
+    const response = await fetch(`${API_BASE_URL}/purchases`);
     purchases = await response.json();
     updatePurchaseList();
   } catch (error) {
@@ -131,7 +133,7 @@ async function addPurchase() {
   }
 
   try {
-    const response = await fetch('http://localhost:3000/purchases', {
+    const response = await fetch(`${API_BASE_URL}/purchases`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title, price, date }),
@@ -151,7 +153,7 @@ async function addPurchase() {
 // Удаление покупки
 async function deletePurchase(id) {
   try {
-    const response = await fetch(`http://localhost:3000/purchases/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/purchases/${id}`, {
       method: 'DELETE',
     });
 
@@ -166,7 +168,7 @@ async function deletePurchase(id) {
 // Загрузка профитов с сервера
 async function loadProfits() {
   try {
-    const response = await fetch('http://localhost:3000/profits');
+    const response = await fetch(`${API_BASE_URL}/profits`);
     const profits = await response.json();
 
     document.getElementById('totalProfit').textContent = profits.totalProfit.toFixed(2);
@@ -200,7 +202,7 @@ async function sellItem() {
 
   try {
     // Загрузка текущих профитов с сервера
-    const response = await fetch('http://localhost:3000/profits');
+    const response = await fetch(`${API_BASE_URL}/profits`);
     const currentProfits = await response.json();
 
     const today = new Date();
@@ -215,7 +217,7 @@ async function sellItem() {
     };
 
     // Сохраняем обновлённые профиты на сервере
-    await fetch('http://localhost:3000/profits', {
+    await fetch(`${API_BASE_URL}/profits`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updatedProfits),
@@ -274,7 +276,7 @@ async function resetProfits() {
   };
 
   try {
-    await fetch('http://localhost:3000/profits', {
+    await fetch(`${API_BASE_URL}/profits`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(resetData),
