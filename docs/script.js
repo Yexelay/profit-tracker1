@@ -31,33 +31,33 @@ function logout() {
 }
 
 // Логика регистрации
-// async function registerUser() {
-//   const email = document.getElementById('registerEmail').value;
-//   const password = document.getElementById('registerPassword').value;
+async function registerUser() {
+  const email = document.getElementById('registerEmail').value;
+  const password = document.getElementById('registerPassword').value;
 
-//   if (!email || !password) {
-//     document.getElementById('registerMessage').textContent = 'Пожалуйста, заполните все поля!';
-//     return;
-//   }
+  if (!email || !password) {
+    document.getElementById('registerMessage').textContent = 'Пожалуйста, заполните все поля!';
+    return;
+  }
 
-//   try {
-//     const response = await fetch(`${API_BASE_URL}/register`, {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify({ email, password }),
-//     });
+  try {
+    const response = await fetch(`${API_BASE_URL}/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
 
-//     if (response.ok) {
-//       document.getElementById('registerMessage').textContent = 'Регистрация прошла успешно!';
-//     } else {
-//       const data = await response.json();
-//       document.getElementById('registerMessage').textContent = data.error || 'Ошибка регистрации.';
-//     }
-//   } catch (error) {
-//     console.error('Ошибка запроса:', error);
-//     document.getElementById('registerMessage').textContent = 'Ошибка при подключении к серверу.';
-//   }
-// }
+    if (response.ok) {
+      document.getElementById('registerMessage').textContent = 'Регистрация прошла успешно!';
+    } else {
+      const data = await response.json();
+      document.getElementById('registerMessage').textContent = data.error || 'Ошибка регистрации.';
+    }
+  } catch (error) {
+    console.error('Ошибка запроса:', error);
+    document.getElementById('registerMessage').textContent = 'Ошибка при подключении к серверу.';
+  }
+}
 
 let token = null;
 
